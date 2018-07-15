@@ -62,6 +62,61 @@ func TestArea(t *testing.T) {
 }
 ```
 
+Pada Go test function yang kita tulis memiliki karakteristik yaitu:
+
+* Hanya memiliki 1 parameter yang diperlukan untuk testing yaitu `t *testing.T`, dengan parameter tersebut, kita bisa mengakses method-method untuk keperluan testing.
+* Dimulai dengan kata `Test` lalu diikuti oleh kata atau *phrase* yang menunjukkan apa yang dilakukan pada pengujian tersebut dan dimulai dengan huruf besar. Contoh pada test file tersebut adalah `TestArea`.
+* Memanggil `t.Error` atau `t.Fail` untuk mengindikasikan sebuah kesalahan yang terjadi.
+* Dapat menggunakan `t.Log` untuk melakukan *debugging* atau melihat informasi dari suatu nilai yang ada pada test.
+* Harus disimpan pada file dengan *suffix* `_test.go`, misal `circle_test.go`.
+
+### Menjalankan Tests
+
+Untuk menjalankan tests sebuah *package* yang telah dibuat, terdapat 2 cara yaitu:
+
+#### 1. Dalam folder yang sama
+
+```bash
+go test
+```
+
+Cara ini menjalankan file apapun yang cocok dengan *packagename_test.go*
+
+#### 2. Berdasarkan nama *package*
+
+```bash
+go test github.com/ramadani/go-unit-test/circle
+```
+
+Untuk melihat lebih detail *output* yang dihasilkan pada pengujian, kamu bisa menambahkan argumen `-v` dibelakang test command
+
+```bash
+go test -v
+
+=== RUN   TestArea--- PASS: TestArea (0.00s)PASS
+ok      path/to/your/sourcecode        0.010s
+```
+
+atau
+
+```bash
+go test -v github.com/ramadani/go-unit-test/circle
+
+=== RUN   TestArea--- PASS: TestArea (0.00s)PASS
+ok      github.com/ramadani/go-unit-tests/circle        0.010s
+```
+
+*Output* ketika terjadi kesalahan
+
+```bash
+
+=== RUN   TestArea--- FAIL: TestArea (0.00s)
+        circle_test.go:14: TestArea failed, expected: '3000000.00', got: '314.16'
+FAIL
+exit status 1
+FAIL    github.com/ramadani/go-unit-tests/circle        0.006s
+```
+
 ## Kesimpulan
 
 Manfaat dengan adanya unit testing dapat meningkatkan keyakinan pada perubahan maupun *maintaining code*. Jika unit test ditulis dengan baik dan jika itu dijalankan setiap kali terdapat perubahan pada *code*, kita akan dapat segera menemukan setiap *defects* yang diperlihatkan karena adanya perubahan pada *code*. *code* yang ditulis juga akan lebih *reusable* karena untuk unit test, *code* yang dibuat harus modular. Selain itu juga dengan adanya unit test, proses development bisa lebih cepat dan cost yang dikeluarkan untuk memperbaiki *defects* bisa dikurangi.
@@ -69,4 +124,5 @@ Manfaat dengan adanya unit testing dapat meningkatkan keyakinan pada perubahan m
 ## Referensi
 
 * [Software Testing Fundamental - Unit Testing](http://softwaretestingfundamentals.com/unit-testing/)
+* [Golang basics - writing unit tests](https://blog.alexellis.io/golang-writing-unit-tests/)
 * [Dasar Pemrograman Golang - Unit Test](https://blog.alexellis.io/golang-writing-unit-tests/)
