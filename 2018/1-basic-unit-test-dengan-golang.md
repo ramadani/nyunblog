@@ -13,9 +13,58 @@ Unit Testing adalah sebuah level pengujian perangkat lunak dimana unit-unit indi
 
 Membuat Unit Testing dengan Go sangat mudah. By default kamu tidak perlu menginstall tools yang diperlukan untuk membuat dan menjalankan testing, karena Go sudah memiliki package `testing` yang ada didalamnya dan sebuah *built-in testing command* yang disebut `go test` untuk menjalankan tests yang telah dibuat.
 
+### Menulis Tests
+
+Mari kita mulai dengan menggunakan contoh lingkaran, pada lingkaran kita dapat mencari panjang diameter, luas, dan kelilingnya. Berikut contoh code circle yang akan kita gunakan untuk unit testing.
+
+```go
+package circle
+
+import (
+	"math"
+)
+
+type Circle struct {
+	Radius float64
+}
+
+func (c Circle) Diameter() float64 {
+	return 2 * c.Radius
+}
+
+func (c Circle) Area() float64 {
+	return math.Pi * c.Radius * c.Radius
+}
+
+func (c Circle) Circumference() float64 {
+	return math.Pi * c.Diameter()
+}
+```
+
+Kemudian kita buat test untuk menguji code yang telah dibuat sebelumnya pada file yang terpisah. File test dapat berada pada *package* (circle) yang sama atau pada *package* (dan folder) yang berbeda. Berikut unit testing untuk menguji luas lingkaran:
+
+```go
+package circle
+
+import (
+	"testing"
+)
+
+func TestArea(t *testing.T) {
+	expected := 314.1592653589793
+
+	circle := Circle{Radius: 10}
+	actual := circle.Area()
+
+	if actual != expected {
+		t.Errorf("TestArea failed, expected: '%.2f', got: '%.2f'", expected, actual)
+	}
+}
+```
+
 ## Kesimpulan
 
-Manfaat dengan adanya unit testing dapat meningkatkan keyakinan pada perubahan maupun *maintaining code*. Jika unit test ditulis dengan baik dan jika itu dijalankan setiap kali terdapat perubahan pada *code*, kita akan dapat segera menemukan setiap *defects* yang diperlihatkan karena adanya perubahan pada *code*. **code** yang ditulis juga akan lebih *reusable* karena untuk unit test, **code** yang dibuat harus modular. Selain itu juga dengan adanya unit test, proses development bisa lebih cepat dan cost yang dikeluarkan untuk memperbaiki *defects* bisa dikurangi.
+Manfaat dengan adanya unit testing dapat meningkatkan keyakinan pada perubahan maupun *maintaining code*. Jika unit test ditulis dengan baik dan jika itu dijalankan setiap kali terdapat perubahan pada *code*, kita akan dapat segera menemukan setiap *defects* yang diperlihatkan karena adanya perubahan pada *code*. *code* yang ditulis juga akan lebih *reusable* karena untuk unit test, *code* yang dibuat harus modular. Selain itu juga dengan adanya unit test, proses development bisa lebih cepat dan cost yang dikeluarkan untuk memperbaiki *defects* bisa dikurangi.
 
 ## Referensi
 
