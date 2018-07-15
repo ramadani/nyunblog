@@ -117,6 +117,75 @@ exit status 1
 FAIL    github.com/ramadani/go-unit-tests/circle        0.006s
 ```
 
+### Test Coverage
+
+> In computer science, test coverage is a measure used to describe the degree to which the source code of a program is executed when a particular test suite runs. A program with high test coverage, measured as a percentage, has had more of its source code executed during testing, which suggests it has a lower chance of containing undetected software bugs compared to a program with low test coverage. - [Wikipedia](https://en.wikipedia.org/wiki/Code_coverage)
+
+Test Coverage bertujuan untuk mengukur berapa banyak *code* yang diuji. Pada `go test` tool telah memiliki *built-in code-coverage* sehingga untuk menggunakannya kita hanya tinggal menambahkan `-cover` pada *test command*.
+
+```bash
+go test -cover
+
+PASS
+coverage: 33.3% of statements
+ok      github.com/ramadani/go-unit-tests/circle        0.005s
+```
+
+Bisa dilihat nilai dari *test coverage* yang dihasilkan adalah 33.3%, karena pada test yang dibuat kita hanya menguji untuk method `Area()` saja. Coba kita tambahkan test untuk method lainnya.
+
+```go
+package circle
+
+import (
+	"testing"
+)
+
+func TestDiameter(t *testing.T) {
+	expected := 14.0
+
+	circle := Circle{Radius: 7}
+	actual := circle.Diameter()
+
+	if actual != expected {
+		t.Errorf("TestDiameter failed, expected: '%.2f', got: '%.2f'", expected, actual)
+	}
+}
+
+func TestArea(t *testing.T) {
+	expected := 314.1592653589793
+
+	circle := Circle{Radius: 10}
+	actual := circle.Area()
+
+	if actual != expected {
+		t.Errorf("TestArea failed, expected: '%.2f', got: '%.2f'", expected, actual)
+	}
+}
+
+func TestCircumference(t *testing.T) {
+	expected := 62.83185307179586
+
+	circle := Circle{Radius: 10}
+	actual := circle.Circumference()
+
+	if actual != expected {
+		t.Errorf("TestCircumference failed, expected: '%.2f', got: '%.2f'", expected, actual)
+	}
+}
+```
+
+Kemudian kita jalankan lagi *test command* seperti sebelumnya
+
+```bash
+go test -cover
+
+PASS
+coverage: 100.0% of statements
+ok      github.com/ramadani/go-unit-tests/circle        0.006s
+```
+
+Dengan membuat test untuk method lainnya maka hasilnya 100.0%. Tapi *test coverage* tidak menjamin bahwa tests yang kita buat baik, karena nilai metrik yang dihasilkan dapat menyebabkan *misleading*. Kita perlu memastikan bahwa kita tidak hanya mengeksekusi *code* yang ada, tetapi kita memverifikasi *behaviour* dan nilai *output* serta membuat test yang beragam.
+
 ## Kesimpulan
 
 Manfaat dengan adanya unit testing dapat meningkatkan keyakinan pada perubahan maupun *maintaining code*. Jika unit test ditulis dengan baik dan jika itu dijalankan setiap kali terdapat perubahan pada *code*, kita akan dapat segera menemukan setiap *defects* yang diperlihatkan karena adanya perubahan pada *code*. *code* yang ditulis juga akan lebih *reusable* karena untuk unit test, *code* yang dibuat harus modular. Selain itu juga dengan adanya unit test, proses development bisa lebih cepat dan cost yang dikeluarkan untuk memperbaiki *defects* bisa dikurangi.
@@ -125,4 +194,5 @@ Manfaat dengan adanya unit testing dapat meningkatkan keyakinan pada perubahan m
 
 * [Software Testing Fundamental - Unit Testing](http://softwaretestingfundamentals.com/unit-testing/)
 * [Golang basics - writing unit tests](https://blog.alexellis.io/golang-writing-unit-tests/)
+* [Code coverage](https://en.wikipedia.org/wiki/Code_coverage)
 * [Dasar Pemrograman Golang - Unit Test](https://blog.alexellis.io/golang-writing-unit-tests/)
