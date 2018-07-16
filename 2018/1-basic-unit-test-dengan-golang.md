@@ -78,13 +78,15 @@ Untuk menjalankan *tests* sebuah *package* yang telah dibuat, terdapat 2 cara ya
 
 #### 1. Dalam folder yang sama
 
+Cara ini menjalankan file apapun yang cocok dengan *packagename_test.go* pada folder yang diarahkan.
+
 ```bash
 go test
 ```
 
-Cara ini menjalankan file apapun yang cocok dengan *packagename_test.go*
-
 #### 2. Berdasarkan *package*
+
+Menjalankan test dengan *path* dimana package itu berada. Misal:
 
 ```bash
 go test github.com/ramadani/go-unit-test/circle
@@ -185,7 +187,7 @@ coverage: 100.0% of statements
 ok      github.com/ramadani/go-unit-tests/circle        0.006s
 ```
 
-Dengan membuat test untuk method lainnya maka hasilnya 100.0%. Tapi *test coverage* tidak menjamin bahwa tests yang kita buat benar, karena nilai metrik yang dihasilkan dapat menyebabkan *misleading*. Kita perlu memastikan bahwa kita tidak hanya mengeksekusi *code* yang ada, tetapi kita memverifikasi *behaviour* dan nilai *output* serta membuat test yang beragam.
+Dengan membuat test untuk method lainnya maka hasilnya 100.0%. Tapi *test coverage* tidak menjamin bahwa tests yang kita buat benar, karena nilai metrik yang dihasilkan dapat menyebabkan *misleading*. Kita perlu memastikan bahwa kita tidak hanya mengeksekusi *code* yang ada, tetapi kita lakukan verifikasi *behaviour* dan nilai *output* serta membuat test yang beragam.
 
 ## Kesimpulan
 
