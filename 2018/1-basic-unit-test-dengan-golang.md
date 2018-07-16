@@ -51,9 +51,9 @@ import (
 )
 
 func TestArea(t *testing.T) {
-	expected := 314.1592653589793
-
 	circle := Circle{Radius: 10}
+
+	expected := 314.1592653589793
 	actual := circle.Area()
 
 	if actual != expected {
@@ -109,9 +109,8 @@ ok      github.com/ramadani/go-unit-tests/circle        0.010s
 *Output* ketika terjadi kesalahan
 
 ```bash
-
 === RUN   TestArea--- FAIL: TestArea (0.00s)
-        circle_test.go:14: TestArea failed, expected: '3000000.00', got: '314.16'
+        circle_test.go:14: TestArea failed, expected: '300.00', got: '314.16'
 FAIL
 exit status 1
 FAIL    github.com/ramadani/go-unit-tests/circle        0.006s
@@ -141,9 +140,9 @@ import (
 )
 
 func TestDiameter(t *testing.T) {
-	expected := 14.0
-
 	circle := Circle{Radius: 7}
+
+	expected := 14.0
 	actual := circle.Diameter()
 
 	if actual != expected {
@@ -152,9 +151,9 @@ func TestDiameter(t *testing.T) {
 }
 
 func TestArea(t *testing.T) {
-	expected := 314.1592653589793
-
 	circle := Circle{Radius: 10}
+
+	expected := 314.1592653589793
 	actual := circle.Area()
 
 	if actual != expected {
@@ -163,9 +162,9 @@ func TestArea(t *testing.T) {
 }
 
 func TestCircumference(t *testing.T) {
-	expected := 62.83185307179586
-
 	circle := Circle{Radius: 10}
+
+	expected := 62.83185307179586
 	actual := circle.Circumference()
 
 	if actual != expected {
@@ -184,11 +183,11 @@ coverage: 100.0% of statements
 ok      github.com/ramadani/go-unit-tests/circle        0.006s
 ```
 
-Dengan membuat test untuk method lainnya maka hasilnya 100.0%. Tapi *test coverage* tidak menjamin bahwa tests yang kita buat baik, karena nilai metrik yang dihasilkan dapat menyebabkan *misleading*. Kita perlu memastikan bahwa kita tidak hanya mengeksekusi *code* yang ada, tetapi kita memverifikasi *behaviour* dan nilai *output* serta membuat test yang beragam.
+Dengan membuat test untuk method lainnya maka hasilnya 100.0%. Tapi *test coverage* tidak menjamin bahwa tests yang kita buat benar, karena nilai metrik yang dihasilkan dapat menyebabkan *misleading*. Kita perlu memastikan bahwa kita tidak hanya mengeksekusi *code* yang ada, tetapi kita memverifikasi *behaviour* dan nilai *output* serta membuat test yang beragam.
 
 ## Kesimpulan
 
-Manfaat dengan adanya unit testing dapat meningkatkan keyakinan pada perubahan maupun *maintaining code*. Jika unit test ditulis dengan baik dan jika itu dijalankan setiap kali terdapat perubahan pada *code*, kita akan dapat segera menemukan setiap *defects* yang diperlihatkan karena adanya perubahan pada *code*. *code* yang ditulis juga akan lebih *reusable* karena untuk unit test, *code* yang dibuat harus modular. Selain itu juga dengan adanya unit test, proses development bisa lebih cepat dan cost yang dikeluarkan untuk memperbaiki *defects* bisa dikurangi.
+Manfaat dengan adanya unit testing dapat meningkatkan keyakinan pada perubahan maupun *maintaining code*. Jika unit test ditulis dengan baik dan jika itu dijalankan setiap kali terdapat perubahan pada *code*, kita akan dapat segera menemukan setiap *defects* yang diperlihatkan karena adanya perubahan pada *code*. *code* yang ditulis juga akan lebih *reusable* karena untuk membuat unit test, *code* yang dibuat harus modular. Selain itu juga dengan adanya unit test, proses development bisa lebih cepat dan *cost* yang dikeluarkan untuk memperbaiki *defects* bisa dikurangi.
 
 ## Referensi
 
