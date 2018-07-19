@@ -99,4 +99,58 @@ Setelah itu push ke branch development:
 $ git push origin develop
 ```
 
+Setelah itu, persiapan rilis ke production
 
+```bash
+$ git flow release start 0.1.0
+
+Switched to a new branch 'release/0.1.0'
+...
+```
+
+Setelah itu rilis ke branch master
+
+```bash
+$ git flow release finish 0.1.0
+
+Deleted branch release/0.1.0 (was a90d072).
+
+Summary of actions:
+- Latest objects have been fetched from 'origin'
+- Release branch has been merged into 'master'
+- The release was tagged 'v0.1.0'
+- Release branch has been back-merged into 'develop'
+- Release branch 'release/0.1.0' has been deleted
+```
+
+Jika butuh hotfix
+
+```bash
+$ git flow hotfix start 0.1.1
+
+Switched to a new branch 'hotfix/0.1.1'
+```
+
+Lalu hotfix sudah selesai
+
+```bash
+$ git flow hotfix finish 0.1.1
+
+Switched to branch 'master'
+Your branch is up to date with 'origin/master'.
+Merge made by the 'recursive' strategy.
+ main.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Switched to branch 'develop'
+Merge made by the 'recursive' strategy.
+ main.go | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Deleted branch hotfix/0.1.1 (was 48dff30).
+
+Summary of actions:
+- Latest objects have been fetched from 'origin'
+- Hotfix branch has been merged into 'master'
+- The hotfix was tagged 'v0.1.1'
+- Hotfix branch has been back-merged into 'develop'
+- Hotfix branch 'hotfix/0.1.1' has been deleted
+```
