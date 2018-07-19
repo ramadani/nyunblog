@@ -30,7 +30,7 @@ Switched to a new branch 'feature/login'
 
 Lalu kita buat contoh code untuk fitur login
 
-```
+```go
 func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	fmt.Fprint(w, "Login Route\n")
 }
@@ -39,7 +39,31 @@ func Login(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 Commit dan push seperti biasa.
 
 ```bash
-git push origin feature/login
+$ git push origin feature/login
+```
+
+Lalu engineer lain membuat fitur register
+
+```bash
+$ git flow feature start register
+
+Switched to a new branch 'feature/register'
+
+...
+```
+
+Dan menambahkan code untuk fitur register
+
+```go
+func Register(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+	fmt.Fprint(w, "Register Route\n")
+}
+```
+
+Lalu engineer B melakukan commit & push
+
+```bash
+$ git push origin feature/register
 ```
 
 Setelah fitur login selesai dan akan di merge ke branch development, jalankan perintah ini:
@@ -56,4 +80,23 @@ Fast-forward
 Deleted branch feature/login (was d1c026e).
 ```
 
+```bash
+$ git flow feature finish register
+
+Switched to branch 'develop'
+Updating d1c026e..a90d072
+Fast-forward
+ main.go | 5 +++++
+ 1 file changed, 5 insertions(+)
+Deleted branch feature/register (was a90d072).
+```
+
 Biasanya yang melakukannya adalah lead engineer atau posisi yang bertugas.
+
+Setelah itu push ke branch development:
+
+```bash
+$ git push origin develop
+```
+
+
